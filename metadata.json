@@ -1,0 +1,6 @@
+{
+  "name": "VibeCode Studio",
+  "description": "Catálogo moderno para repositorios de código y aplicaciones web con despliegue en Cloudflare Pages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
