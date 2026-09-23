@@ -10,7 +10,7 @@ export interface Project {
   name: string;
   repoName: string; // e.g. "Scan-POS"
   githubUrl: string; // https://github.com/darwin13OG/Scan-POS
-  cloudflareUrl: string; // https://scanpos.pages.dev
+  cloudflareUrl: string; // https://scan-pos.pages.dev
   description: string;
   whatItsUsedFor: string;
   category: string;
