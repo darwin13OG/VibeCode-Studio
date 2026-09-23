@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Zap,
   Search,
+  Settings,
   SlidersHorizontal,
   X
 } from 'lucide-react';
@@ -222,7 +223,47 @@ export default function App() {
                 <Heart className={`w-3.5 h-3.5 ${favoritesOnlyFilter ? 'fill-current text-rose-500' : 'text-rose-300'}`} />
                 <span>{favorites.length} en favoritos</span>
               </button>
+
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl backdrop-blur-md bg-white/15 border border-white/20 text-white hover:bg-white/25 text-xs font-semibold transition-all active:scale-95 cursor-pointer"
+                title="Abrir Ajustes"
+              >
+                <Settings className="w-3.5 h-3.5 text-blue-200" />
+                <span>Ajustes</span>
+              </button>
             </div>
+          </div>
+        </section>
+
+        {/* Mobile Dedicated Search Bar (Ample width, native feel, prevents auto-zoom) */}
+        <section className="block sm:hidden">
+          <div
+            className={`relative flex items-center rounded-2xl border transition-all ${
+              isDark
+                ? 'bg-[#15171e] border-white/10 focus-within:border-blue-500 shadow-md shadow-black/20'
+                : 'bg-white border-slate-200 focus-within:border-blue-500 shadow-sm'
+            }`}
+          >
+            <Search className="w-4 h-4 text-blue-400 absolute left-3.5 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder="Buscar repositorios, tecnologías..."
+              className={`w-full pl-10 pr-9 py-3 text-[15px] bg-transparent outline-none rounded-2xl ${
+                isDark ? 'text-white placeholder:text-slate-500' : 'text-slate-900 placeholder:text-slate-400'
+              }`}
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                aria-label="Limpiar búsqueda"
+                className="absolute right-3 p-1 rounded-full text-slate-400 hover:text-white cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </section>
 
