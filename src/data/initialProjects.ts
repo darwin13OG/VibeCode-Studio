@@ -4,6 +4,7 @@
  */
 
 import { Project } from '../types';
+import scanPosBanner from '../assets/images/scan_pos_preview_1790120288719.jpg';
 
 export const INITIAL_PROJECTS: Project[] = [
   {
@@ -17,7 +18,7 @@ export const INITIAL_PROJECTS: Project[] = [
     whatItsUsedFor: 'Ideal para comercios, tiendas retail y emprendedores que necesitan registrar ventas, control de productos y escaneo de códigos de barra sin depender de equipos o software costosos.',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5', 'Cloudflare Pages'],
     iconType: 'scanner',
-    bannerUrl: '/src/assets/images/scan_pos_preview_1790120288719.jpg',
+    bannerUrl: scanPosBanner,
     updatedDate: 'Reciente',
   }
 ];

@@ -1,0 +1,20 @@
+# Global security headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), microphone=(), geolocation=()
+
+# Cache control for dynamic HTML & service worker (always fresh)
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/manifest.webmanifest
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Immutable long-term caching for hashed build assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
