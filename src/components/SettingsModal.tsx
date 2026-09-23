@@ -12,7 +12,6 @@ import {
   Heart,
   Download,
   Trash2,
-  Globe,
   Github
 } from 'lucide-react';
 import { VibeLogo } from './VibeLogo';
@@ -169,7 +168,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
               </div>
 
-              {/* Install Button always visible and clickable */}
               <button
                 onClick={handleInstallClick}
                 className="w-full py-2.5 px-4 rounded-xl font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/25 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
