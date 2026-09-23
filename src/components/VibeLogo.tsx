@@ -29,34 +29,32 @@ export const VibeLogo: React.FC<VibeLogoProps> = ({ isDark, size = 38, showText 
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
         >
-          {/* Left Wing / Polygon Bracket matching VibeCode.png */}
+          {/* Left Wing / Polygon matching VibeCode.png */}
           <path
-            d="M 47 18
-               L 28 30
-               L 28 50
-               L 38 57
-               L 38 68
-               L 47 77
-               L 47 63
-               L 40 57
-               L 40 50
-               L 47 44
+            d="M 48.4 26.8
+               L 33.8 36.2
+               L 33.8 52.0
+               L 41.2 56.6
+               L 41.2 65.0
+               L 48.4 70.6
+               L 48.4 54.0
+               L 41.5 49.2
+               L 48.4 44.4
                Z"
             fill="#FFFFFF"
           />
 
-          {/* Right Wing / Polygon Bracket (Exact Mirrored) */}
+          {/* Right Wing / Polygon (Exact Mirrored across center line) */}
           <path
-            d="M 53 18
-               L 72 30
-               L 72 50
-               L 62 57
-               L 62 68
-               L 53 77
-               L 53 63
-               L 60 57
-               L 60 50
-               L 53 44
+            d="M 51.6 26.8
+               L 66.2 36.2
+               L 66.2 52.0
+               L 58.8 56.6
+               L 58.8 65.0
+               L 51.6 70.6
+               L 51.6 54.0
+               L 58.5 49.2
+               L 51.6 44.4
                Z"
             fill="#FFFFFF"
           />
