@@ -16,7 +16,7 @@ export interface Project {
   category: string;
   techStack: string[];
   faviconUrl?: string;
-  iconType?: 'scanner' | 'fintech' | 'custom' | 'auto';
+  iconType?: 'scanner' | 'fintech' | 'waves' | 'custom' | 'auto';
   iconSvg?: string;
   bannerUrl?: string;
   updatedDate?: string;

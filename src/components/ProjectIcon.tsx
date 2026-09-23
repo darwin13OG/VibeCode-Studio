@@ -11,7 +11,7 @@ interface ProjectIconProps {
   repoName: string;
   cloudflareUrl?: string;
   faviconUrl?: string;
-  iconType?: 'scanner' | 'fintech' | 'tech' | 'custom' | 'auto';
+  iconType?: 'scanner' | 'fintech' | 'waves' | 'tech' | 'custom' | 'auto';
   iconSvg?: string;
   techStack?: string[];
   category?: string;
@@ -104,7 +104,42 @@ export const ProjectIcon: React.FC<ProjectIconProps> = ({
     );
   }
 
-  // 3. Try live favicon if provided and valid
+  // 3. Focus Wave exact replica from user screenshot
+  if (iconType === 'waves' || norm.includes('focus') || norm.includes('wave')) {
+    return (
+      <div
+        className={`${className} bg-gradient-to-br from-[#1b1947] via-[#0d1e3a] to-[#071324] border border-[#00d2ff]/45 shadow-lg shadow-cyan-950/40 flex items-center justify-center shrink-0 select-none overflow-hidden relative`}
+        style={{ width: size, height: size }}
+      >
+        <div className="absolute inset-0 bg-cyan-500/10 blur-sm pointer-events-none" />
+        <svg viewBox="0 0 100 100" fill="none" className="w-full h-full p-2.5 relative z-10">
+          {/* Top Wave */}
+          <path
+            d="M 28 41 Q 33.5 35, 39 41 T 50 41 T 61 41 T 72 41"
+            stroke="#00d2ff"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+          {/* Middle Wave */}
+          <path
+            d="M 28 50 Q 33.5 44, 39 50 T 50 50 T 61 50 T 72 50"
+            stroke="#00d2ff"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+          {/* Bottom Wave */}
+          <path
+            d="M 28 59 Q 33.5 53, 39 59 T 50 59 T 61 59 T 72 59"
+            stroke="#00d2ff"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  // 4. Try live favicon if provided and valid
   if (faviconUrl && !imgError) {
     return (
       <div

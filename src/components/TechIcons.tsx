@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Code, Database, Globe, Layers, Cpu, Terminal } from 'lucide-react';
+import { Code, Database, Globe, Layers, Cpu, Terminal, Volume2 } from 'lucide-react';
 
 interface TechIconProps {
   name: string;
@@ -123,6 +123,10 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-4 h-4',
 
   if (norm.includes('storage') || norm.includes('sql') || norm.includes('db')) {
     return <Database className={className} />;
+  }
+
+  if (norm.includes('audio') || norm.includes('sound')) {
+    return <Volume2 className={className} />;
   }
 
   return <Code className={className} />;
