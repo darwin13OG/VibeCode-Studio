@@ -8,8 +8,22 @@ import scanPosBanner from '../assets/images/scan_pos_preview_1790120288719.jpg';
 import focusWaveBanner from '../assets/images/focus_wave_preview_1790173931038.jpg';
 import cotizadorExpresBanner from '../assets/images/cotizador_expres_banner.jpg';
 import cotizadorExpresIcon from '../assets/images/cotizador_expres_icon.png';
+import codeWaveBanner from '../assets/images/code_wave_banner.jpg';
 
 export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'code-wave',
+    name: 'Code Wave',
+    repoName: 'Code-View-AI-',
+    githubUrl: 'https://github.com/darwin13OG/Code-View-AI-',
+    cloudflareUrl: 'https://code-wave.pages.dev',
+    category: 'Diseño UX/UI',
+    description: 'Showcase interactivo de diseño UX/UI, componentes avanzados y microinteracciones fluidas creado para demostrar mis habilidades como Vibecoder y atraer contrataciones en Workana.',
+    whatItsUsedFor: 'Sirve como carta de presentación interactiva para clientes en Workana que buscan contratarme como Vibecoder. Permite explorar y probar en vivo demos de interfaces modernas (checkout 3D, barras líquidas, docks paramétricos, tarjetas holográficas, switches cyberpunk y animaciones táctiles) demostrando dominio visual y técnico.',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Spline 3D', 'Vite', 'Cloudflare Pages'],
+    iconType: 'codewave',
+    bannerUrl: codeWaveBanner,
+  },
   {
     id: 'cotizador-expres',
     name: 'Cotizador Exprés',

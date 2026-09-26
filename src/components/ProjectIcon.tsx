@@ -11,7 +11,7 @@ interface ProjectIconProps {
   repoName: string;
   cloudflareUrl?: string;
   faviconUrl?: string;
-  iconType?: 'scanner' | 'fintech' | 'waves' | 'tech' | 'custom' | 'auto';
+  iconType?: 'scanner' | 'fintech' | 'waves' | 'codewave' | 'tech' | 'custom' | 'auto';
   iconSvg?: string;
   techStack?: string[];
   category?: string;
@@ -98,6 +98,41 @@ export const ProjectIcon: React.FC<ProjectIconProps> = ({
             stroke="#00F59B"
             strokeWidth="6"
             strokeLinecap="round"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  // 2.5 Code Wave official SVG icon (< > in Electric Cyan to Emerald Green on #050505)
+  if (iconType === 'codewave' || (norm.includes('code') && norm.includes('wave'))) {
+    return (
+      <div
+        className={`${className} bg-[#050505] border border-[#00f0ff]/30 shadow-lg shadow-cyan-950/40 flex items-center justify-center shrink-0 select-none overflow-hidden relative`}
+        style={{ width: size, height: size }}
+      >
+        <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+          <defs>
+            <linearGradient id="cwg" x1="6" y1="10" x2="34" y2="30" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#00f0ff" />
+              <stop offset="45%" stopColor="#00e5ff" />
+              <stop offset="75%" stopColor="#00f5c4" />
+              <stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M15 11L7 20L15 29"
+            stroke="url(#cwg)"
+            strokeWidth="3.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M25 11L33 20L25 29"
+            stroke="url(#cwg)"
+            strokeWidth="3.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </div>

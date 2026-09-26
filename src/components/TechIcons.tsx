@@ -73,6 +73,33 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-4 h-4',
     );
   }
 
+  if (norm.includes('framer') || norm.includes('motion')) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+        <path d="M4 2h16v7h-8L4 2z" fill="#0055FF" />
+        <path d="M4 9h8l8 7H4V9z" fill="#00AAFF" />
+        <path d="M4 16h8v6l-8-6z" fill="#88DDFF" />
+      </svg>
+    );
+  }
+
+  if (norm.includes('spline') || norm.includes('3d')) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+        <defs>
+          <linearGradient id="splineGrad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#00F0FF" />
+            <stop offset="0.5" stopColor="#7000FF" />
+            <stop offset="1" stopColor="#FF00C7" />
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="9" stroke="url(#splineGrad)" strokeWidth="2.5" />
+        <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" stroke="url(#splineGrad)" strokeWidth="2" />
+        <circle cx="15.5" cy="8.5" r="2" fill="#00F0FF" />
+      </svg>
+    );
+  }
+
   if (norm.includes('vite')) {
     return (
       <svg width={size} height={size} viewBox="0 0 32 32" className={className} fill="none">
