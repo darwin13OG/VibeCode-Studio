@@ -6,8 +6,23 @@
 import { Project } from '../types';
 import scanPosBanner from '../assets/images/scan_pos_preview_1790120288719.jpg';
 import focusWaveBanner from '../assets/images/focus_wave_preview_1790173931038.jpg';
+import cotizadorExpresBanner from '../assets/images/cotizador_expres_banner.jpg';
+import cotizadorExpresIcon from '../assets/images/cotizador_expres_icon.png';
 
 export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'cotizador-expres',
+    name: 'Cotizador Exprés',
+    repoName: 'cotizador-expres',
+    githubUrl: 'https://github.com/darwin13OG/cotizador-expres',
+    cloudflareUrl: 'https://cotizador-expres.pages.dev',
+    category: 'Herramientas',
+    description: 'Generador ágil de cotizaciones y presupuestos profesionales en PDF, con cálculo automático por unidad o jornal, logotipo propio y envío directo por WhatsApp.',
+    whatItsUsedFor: 'Diseñado para técnicos, independientes y negocios de servicios que necesitan armar presupuestos claros en segundos desde el celular o PC. Permite detallar conceptos o días de trabajo, definir días de vigencia, incluir cláusulas de garantía, guardar historial local y exportar un PDF listo para compartir con el cliente.',
+    techStack: ['HTML5', 'JavaScript', 'Vue.js', 'Tailwind CSS', 'jsPDF', 'Cloudflare Pages'],
+    faviconUrl: cotizadorExpresIcon,
+    bannerUrl: cotizadorExpresBanner,
+  },
   {
     id: 'focus-wave',
     name: 'Focus Wave',
@@ -20,7 +35,6 @@ export const INITIAL_PROJECTS: Project[] = [
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Web Audio API', 'Vite', 'Cloudflare Pages'],
     iconType: 'waves',
     bannerUrl: focusWaveBanner,
-    updatedDate: 'Nuevo',
   },
   {
     id: 'scan-pos',
@@ -34,6 +48,5 @@ export const INITIAL_PROJECTS: Project[] = [
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5', 'Cloudflare Pages'],
     iconType: 'scanner',
     bannerUrl: scanPosBanner,
-    updatedDate: 'Reciente',
   }
 ];

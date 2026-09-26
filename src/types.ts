@@ -19,7 +19,6 @@ export interface Project {
   iconType?: 'scanner' | 'fintech' | 'waves' | 'custom' | 'auto';
   iconSvg?: string;
   bannerUrl?: string;
-  updatedDate?: string;
 }
 
 export interface ToastMessage {

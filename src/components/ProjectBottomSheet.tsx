@@ -171,7 +171,7 @@ export const ProjectBottomSheet: React.FC<ProjectBottomSheetProps> = ({
                   {project.name}
                 </h2>
                 <p className="text-xs text-white/80 font-mono truncate mt-0.5">
-                  {cleanDomain} · {project.updatedDate || 'Reciente'}
+                  {cleanDomain}
                 </p>
               </div>
             </div>

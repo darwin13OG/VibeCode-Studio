@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import {
   ExternalLink,
   Github,
@@ -14,6 +14,103 @@ import {
 import { Project } from '../types';
 import { TechIcon } from './TechIcons';
 import { ProjectIcon } from './ProjectIcon';
+
+interface ResponsiveTechStackProps {
+  techStack: string[];
+  isDark: boolean;
+  onOpenDetails: () => void;
+}
+
+const ResponsiveTechStack: React.FC<ResponsiveTechStackProps> = ({ techStack, isDark, onOpenDetails }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(() => Math.min(techStack.length, 3));
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const calculateFit = () => {
+      const availableWidth = el.clientWidth;
+      if (availableWidth <= 0) return;
+
+      const gap = 6;
+      const plusPillWidth = 36; // width needed for "+N" pill
+
+      let accumulatedWidth = 0;
+      let count = 0;
+
+      for (let i = 0; i < techStack.length; i++) {
+        const techName = techStack[i];
+        // Dynamic estimation: base (icon 12px + inner gap 4px + px padding 16px + border 4px) = 36px
+        // font-medium text-[10px] is ~6.3px per character
+        const badgeWidth = Math.ceil(36 + techName.length * 6.3);
+
+        const isLastItem = i === techStack.length - 1;
+        const requiredWidth = accumulatedWidth + badgeWidth + (isLastItem ? 0 : gap + plusPillWidth);
+
+        if (requiredWidth <= availableWidth) {
+          accumulatedWidth += badgeWidth + gap;
+          count++;
+        } else {
+          // If the last item fits without needing a +N pill
+          if (isLastItem && accumulatedWidth + badgeWidth <= availableWidth) {
+            count++;
+          }
+          break;
+        }
+      }
+
+      setVisibleCount(Math.max(1, count));
+    };
+
+    calculateFit();
+
+    const resizeObserver = new ResizeObserver(() => {
+      calculateFit();
+    });
+
+    resizeObserver.observe(el);
+    return () => resizeObserver.disconnect();
+  }, [techStack]);
+
+  const visibleTechs = techStack.slice(0, visibleCount);
+  const remainingCount = techStack.length - visibleCount;
+  const remainingTechs = techStack.slice(visibleCount);
+
+  return (
+    <div ref={containerRef} className="flex items-center gap-1.5 w-full overflow-hidden mb-4 min-h-[26px]">
+      {visibleTechs.map(tech => (
+        <span
+          key={tech}
+          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-medium border shrink-0 whitespace-nowrap select-none transition-all hover:scale-105 ${
+            isDark ? 'bg-zinc-900 border-white/5 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
+          }`}
+        >
+          <TechIcon name={tech} size={12} />
+          <span>{tech}</span>
+        </span>
+      ))}
+
+      {remainingCount > 0 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenDetails();
+          }}
+          title={`Ver tecnologías restantes: ${remainingTechs.join(', ')}`}
+          className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded-lg text-[10px] font-mono font-semibold border shrink-0 transition-all cursor-pointer select-none active:scale-95 ${
+            isDark
+              ? 'bg-zinc-800/90 border-white/10 text-slate-300 hover:text-white hover:bg-zinc-700'
+              : 'bg-slate-200/90 border-slate-300 text-slate-700 hover:text-slate-900 hover:bg-slate-300'
+          }`}
+        >
+          +{remainingCount}
+        </button>
+      )}
+    </div>
+  );
+};
 
 interface ProjectCardProps {
   project: Project;
@@ -67,7 +164,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               className="w-14 h-14 rounded-2xl shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-sm"
             />
 
-            {/* Category tag & status */}
+            {/* Category tag */}
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide transition-colors ${
@@ -76,9 +173,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                     : 'bg-blue-50 text-blue-700 border border-blue-200'
                 }`}>
                   {project.category}
-                </span>
-                <span className="text-[11px] font-mono text-slate-400">
-                  {project.updatedDate || 'Reciente'}
                 </span>
               </div>
 
@@ -133,25 +227,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        {/* Tech Stack SVG preview row */}
-        <div className="flex items-center gap-1.5 overflow-hidden mb-4">
-          {project.techStack.slice(0, 4).map(tech => (
-            <span
-              key={tech}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-medium border transition-all hover:scale-105 ${
-                isDark ? 'bg-zinc-900 border-white/5 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'
-              }`}
-            >
-              <TechIcon name={tech} size={12} />
-              <span>{tech}</span>
-            </span>
-          ))}
-          {project.techStack.length > 4 && (
-            <span className="text-[10px] text-slate-400 font-mono">
-              +{project.techStack.length - 4}
-            </span>
-          )}
-        </div>
+        {/* Dynamic Responsive Tech Stack Row */}
+        <ResponsiveTechStack
+          techStack={project.techStack}
+          isDark={isDark}
+          onOpenDetails={() => onOpenDetails(project)}
+        />
       </div>
 
       {/* Bottom Footer Actions: "Ver ficha >" and "Abrir Web" */}

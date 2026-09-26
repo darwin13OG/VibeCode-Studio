@@ -46,6 +46,25 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-4 h-4',
     );
   }
 
+  if (norm.includes('vue')) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 32 32" className={className} fill="none">
+        <path d="M2 4l14 24L30 4h-5.6L16 18.4 7.6 4H2z" fill="#41B883" />
+        <path d="M7.6 4L16 18.4 24.4 4h-5.2L16 9.5 12.8 4H7.6z" fill="#35495E" />
+      </svg>
+    );
+  }
+
+  if (norm.includes('pdf')) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+        <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6z" fill="#E11D48" />
+        <path d="M14 2v6h6l-6-6z" fill="#FDA4AF" />
+        <path d="M7.5 14.5h1.6c.8 0 1.4.5 1.4 1.3 0 .8-.6 1.3-1.4 1.3h-.6v1.4H7.5v-4zm1 1.8h.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-.5v1zm3-1.8h1.5c1.2 0 2 .8 2 2s-.8 2-2 2h-1.5v-4zm1 3.1h.5c.6 0 1-.4 1-1.1s-.4-1.1-1-1.1h-.5v2.2zm3.5-3.1h2.6v.9h-1.6v.8h1.4v.9h-1.4v1.4H16v-4z" fill="#FFFFFF" />
+      </svg>
+    );
+  }
+
   if (norm.includes('tailwind')) {
     return (
       <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">

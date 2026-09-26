@@ -143,15 +143,15 @@ export const ProjectIcon: React.FC<ProjectIconProps> = ({
   if (faviconUrl && !imgError) {
     return (
       <div
-        className={`${className} bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/10 shadow-sm flex items-center justify-center p-2 shrink-0 overflow-hidden`}
+        className={`${className} border border-slate-200/60 dark:border-white/10 shadow-md flex items-center justify-center shrink-0 overflow-hidden select-none`}
         style={{ width: size, height: size }}
       >
         <img
           src={faviconUrl}
           alt={name}
-          className="w-full h-full object-contain rounded-lg"
+          className="w-full h-full object-cover"
           onError={() => setImgError(true)}
-          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
           loading="lazy"
         />
       </div>
