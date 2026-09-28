@@ -6,6 +6,14 @@ import './index.css';
 
 // Dynamically sync Canonical and OpenGraph URLs to current host
 if (typeof window !== 'undefined') {
+  if (import.meta.env.DEV && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister().catch(() => {});
+      }
+    }).catch(() => {});
+  }
+
   try {
     const currentUrl = window.location.origin + window.location.pathname;
 

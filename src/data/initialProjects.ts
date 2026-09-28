@@ -9,8 +9,22 @@ import focusWaveBanner from '../assets/images/focus_wave_preview_1790173931038.j
 import cotizadorExpresBanner from '../assets/images/cotizador_expres_banner.jpg';
 import cotizadorExpresIcon from '../assets/images/cotizador_expres_icon.png';
 import codeWaveBanner from '../assets/images/code_wave_banner.jpg';
+import flickWalletBanner from '../assets/images/flick_wallet_banner.jpg';
 
 export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'flick-wallet',
+    name: 'Flick Wallet',
+    repoName: 'Flick-Wallet',
+    githubUrl: 'https://github.com/darwin13OG/Flick-Wallet',
+    cloudflareUrl: 'https://flickwallet.pages.dev',
+    category: 'Finanzas',
+    description: 'Billetera personal interactiva con diseño Claymorphism 3D para controlar gastos hormiga, registrar ingresos y llevar la cuenta exacta del dinero que gastas.',
+    whatItsUsedFor: 'Diseñada para organizar tus finanzas diarias sin complicaciones y de forma 100% privada. Permite registrar al instante gastos hormiga e ingresos, crear alcancías para metas de ahorro, programar recordatorios de pagos o deudas, visualizar analíticas de consumo y proteger tu información con bloqueo por PIN.',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'PWA', 'Web Audio API', 'Vite', 'Cloudflare Pages'],
+    iconType: 'fintech',
+    bannerUrl: flickWalletBanner,
+  },
   {
     id: 'code-wave',
     name: 'Code Wave',

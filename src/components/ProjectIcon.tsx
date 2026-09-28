@@ -5,6 +5,7 @@
 
 import React, { useState } from 'react';
 import { TechIcon } from './TechIcons';
+import flickWalletClayIcon from '../assets/images/flick_wallet_clay_icon.png';
 
 interface ProjectIconProps {
   name: string;
@@ -42,6 +43,35 @@ export const ProjectIcon: React.FC<ProjectIconProps> = ({
         style={{ width: size, height: size }}
         dangerouslySetInnerHTML={{ __html: iconSvg }}
       />
+    );
+  }
+
+  // 1.5 Flick Wallet official 3D Clay Icon + SVG fallback from repo
+  if (iconType === 'fintech' || (norm.includes('flick') && norm.includes('wallet'))) {
+    return (
+      <div
+        className={`${className} bg-gradient-to-br from-[#e2dfff] to-[#f0f4f8] dark:from-[#321ed2]/60 dark:to-[#1e2433] border border-[#635bff]/35 shadow-lg shadow-[#635bff]/20 flex items-center justify-center shrink-0 select-none overflow-hidden p-1.5`}
+        style={{ width: size, height: size }}
+      >
+        {!imgError ? (
+          <img
+            src={flickWalletClayIcon}
+            alt={name}
+            className="w-full h-full object-contain drop-shadow-[0_4px_6px_rgba(73,62,229,0.3)]"
+            onError={() => setImgError(true)}
+            referrerPolicy="no-referrer"
+            loading="lazy"
+          />
+        ) : (
+          <svg viewBox="0 0 120 120" className="w-full h-full">
+            <rect x="8" y="8" width="104" height="104" rx="28" fill="#635bff" />
+            <path d="M38 36 L54 16 L88 26 L78 44 Z" fill="#62fae3" />
+            <rect x="24" y="34" width="72" height="58" rx="16" fill="#ffffff" />
+            <rect x="64" y="52" width="34" height="22" rx="8" fill="#f0f4f8" stroke="#c3c0ff" strokeWidth="2" />
+            <circle cx="84" cy="63" r="5" fill="#635bff" />
+          </svg>
+        )}
+      </div>
     );
   }
 
