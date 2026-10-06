@@ -12,7 +12,7 @@ interface ProjectIconProps {
   repoName: string;
   cloudflareUrl?: string;
   faviconUrl?: string;
-  iconType?: 'scanner' | 'fintech' | 'waves' | 'codewave' | 'tech' | 'custom' | 'auto';
+  iconType?: 'scanner' | 'fintech' | 'waves' | 'codewave' | 'rutalibre' | 'tech' | 'custom' | 'auto';
   iconSvg?: string;
   techStack?: string[];
   category?: string;
@@ -71,6 +71,20 @@ export const ProjectIcon: React.FC<ProjectIconProps> = ({
             <circle cx="84" cy="63" r="5" fill="#635bff" />
           </svg>
         )}
+      </div>
+    );
+  }
+
+  // 1.8 Ruta Libre official icon - solo la flecha blanca
+  if (iconType === 'rutalibre' || norm.includes('ruta')) {
+    return (
+      <div
+        className={`${className} bg-[#0B0E14] border border-[#21262D] shadow-lg shadow-black/50 flex items-center justify-center shrink-0 select-none overflow-hidden relative`}
+        style={{ width: size, height: size }}
+      >
+        <svg viewBox="0 0 24 24" fill="none" className="w-full h-full p-2.5">
+          <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" fill="#FFFFFF" />
+        </svg>
       </div>
     );
   }

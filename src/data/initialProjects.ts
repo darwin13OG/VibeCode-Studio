@@ -10,8 +10,24 @@ import cotizadorExpresBanner from '../assets/images/cotizador_expres_banner.jpg'
 import cotizadorExpresIcon from '../assets/images/cotizador_expres_icon.png';
 import codeWaveBanner from '../assets/images/code_wave_banner.jpg';
 import flickWalletBanner from '../assets/images/flick_wallet_banner.jpg';
+import rutaLibreBanner from '../assets/images/ruta_libre_banner.svg';
+import rutaLibreIcon from '../assets/images/ruta_libre_icon.svg';
 
 export const INITIAL_PROJECTS: Project[] = [
+  {
+    id: 'ruta-libre',
+    name: 'Ruta Libre',
+    repoName: 'Ruta-Libre',
+    githubUrl: 'https://github.com/darwin13OG/Ruta-Libre',
+    cloudflareUrl: 'https://ruta-libre.pages.dev',
+    category: 'Utilidades',
+    description: 'Plataforma de transporte descentralizada estilo Uber sin intermediarios ni comisiones abusivas, con red P2P segura, mapas en tiempo real y trato directo en efectivo.',
+    whatItsUsedFor: 'Conecta a pasajeros y conductores de forma directa a través de una red P2P (MQTT sobre WebSockets con pool de brokers failover y geohashing) sin servidores centrales ni base de datos privada. Ofrece cálculo de rutas y distancias exactas con OSRM, negociación libre de tarifas en efectivo, botón de pánico SOS con telemetría de emergencia en vivo, modo dual (pasajero y conductor con PWA dedicado) y panel de estadísticas para conductores.',
+    techStack: ['JavaScript', 'Leaflet', 'MQTT', 'Tailwind CSS', 'PWA', 'Cloudflare Pages'],
+    iconType: 'rutalibre',
+    faviconUrl: rutaLibreIcon,
+    bannerUrl: rutaLibreBanner,
+  },
   {
     id: 'flick-wallet',
     name: 'Flick Wallet',

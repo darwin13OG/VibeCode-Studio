@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Fondo Squircle Oscuro Elegante -->
+  <rect width="64" height="64" rx="18" fill="#0B0E14" />
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" stroke="#21262D" stroke-width="2" />
+  <!-- Flecha Blanca de Navegación -->
+  <g transform="translate(32 32) scale(2.0) translate(-12 -12)">
+    <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" fill="#FFFFFF" />
+  </g>
+</svg>
