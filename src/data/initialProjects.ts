@@ -20,7 +20,7 @@ export const INITIAL_PROJECTS: Project[] = [
     repoName: 'Ruta-Libre',
     githubUrl: 'https://github.com/darwin13OG/Ruta-Libre',
     cloudflareUrl: 'https://ruta-libre.pages.dev',
-    category: 'Utilidades',
+    category: 'Herramientas',
     description: 'Plataforma de transporte descentralizada estilo Uber sin intermediarios ni comisiones abusivas, con red P2P segura, mapas en tiempo real y trato directo en efectivo.',
     whatItsUsedFor: 'Conecta a pasajeros y conductores de forma directa a través de una red P2P (MQTT sobre WebSockets con pool de brokers failover y geohashing) sin servidores centrales ni base de datos privada. Ofrece cálculo de rutas y distancias exactas con OSRM, negociación libre de tarifas en efectivo, botón de pánico SOS con telemetría de emergencia en vivo, modo dual (pasajero y conductor con PWA dedicado) y panel de estadísticas para conductores.',
     techStack: ['JavaScript', 'Leaflet', 'MQTT', 'Tailwind CSS', 'PWA', 'Cloudflare Pages'],

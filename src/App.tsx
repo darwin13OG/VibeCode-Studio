@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import {
   Layers,
   Heart,
@@ -135,6 +135,46 @@ export default function App() {
     return ['Todas', ...Array.from(cats)];
   }, [projects]);
 
+  // Dynamic CSS Mask Fade for Categories (smooth alpha dissolution without cut-off barrier)
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
+  const [scrollFade, setScrollFade] = useState<{ left: boolean; right: boolean }>({
+    left: false,
+    right: false,
+  });
+
+  const updateScrollFade = useCallback(() => {
+    const el = categoryScrollRef.current;
+    if (!el) return;
+    const isScrollable = el.scrollWidth > el.clientWidth + 2;
+    const canLeft = el.scrollLeft > 4;
+    const canRight = isScrollable && el.scrollLeft < el.scrollWidth - el.clientWidth - 4;
+
+    setScrollFade(prev => {
+      if (prev.left === canLeft && prev.right === canRight) return prev;
+      return { left: canLeft, right: canRight };
+    });
+  }, []);
+
+  useEffect(() => {
+    updateScrollFade();
+    window.addEventListener('resize', updateScrollFade);
+    return () => window.removeEventListener('resize', updateScrollFade);
+  }, [updateScrollFade, categories]);
+
+  const categoryMaskStyle = useMemo(() => {
+    if (!scrollFade.left && !scrollFade.right) {
+      return undefined;
+    }
+    if (scrollFade.left && scrollFade.right) {
+      return 'linear-gradient(to right, transparent 0%, black 32px, black calc(100% - 32px), transparent 100%)';
+    }
+    if (scrollFade.left && !scrollFade.right) {
+      return 'linear-gradient(to right, transparent 0%, black 32px, black 100%)';
+    }
+    // !scrollFade.left && scrollFade.right
+    return 'linear-gradient(to right, black 0%, black calc(100% - 32px), transparent 100%)';
+  }, [scrollFade]);
+
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       if (favoritesOnlyFilter && !favorites.includes(project.id)) {
@@ -177,7 +217,7 @@ export default function App() {
       />
 
       {/* Main Body */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-5 pb-20 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24 space-y-7">
         {/* Blue Gradient Hero Card */}
         <section className="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 text-white shadow-xl shadow-blue-500/15">
           <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
@@ -273,7 +313,16 @@ export default function App() {
             CATEGORÍAS
           </span>
 
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+          <div
+            ref={categoryScrollRef}
+            onScroll={updateScrollFade}
+            style={categoryMaskStyle ? {
+              maskImage: categoryMaskStyle,
+              WebkitMaskImage: categoryMaskStyle,
+              transition: 'mask-image 0.2s ease, -webkit-mask-image 0.2s ease',
+            } : undefined}
+            className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 scroll-smooth"
+          >
             {categories.map(cat => {
               const isActive = selectedCategory === cat && !favoritesOnlyFilter;
               const count = cat === 'Todas' ? projects.length : projects.filter(p => p.category === cat).length;
@@ -285,7 +334,7 @@ export default function App() {
                     setSelectedCategory(cat);
                     setFavoritesOnlyFilter(false);
                   }}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 active:scale-95 cursor-pointer ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 active:scale-95 cursor-pointer shrink-0 ${
                     isActive
                       ? 'bg-gradient-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/20'
                       : isDark
@@ -306,7 +355,7 @@ export default function App() {
             {/* Favoritos Pill */}
             <button
               onClick={() => setFavoritesOnlyFilter(prev => !prev)}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 active:scale-95 cursor-pointer ${
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 active:scale-95 cursor-pointer shrink-0 ${
                 favoritesOnlyFilter
                   ? 'bg-rose-500 text-white shadow-md shadow-rose-500/25'
                   : isDark
@@ -373,7 +422,7 @@ export default function App() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredProjects.map(project => (
                 <ProjectCard
                   key={project.id}
